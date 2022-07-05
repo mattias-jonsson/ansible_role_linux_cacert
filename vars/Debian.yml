@@ -1,0 +1,5 @@
+---
+
+ansible_role_linux_cacert_dest_path: /usr/local/share/ca-certificates/ansible_managed
+ansible_role_linux_cacert_blacklist_dest_path: /usr/local/share/ca-certificates
+ansible_role_linux_cacert_update_command: /usr/sbin/update-ca-certificates --fresh

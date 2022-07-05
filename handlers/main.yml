@@ -1,0 +1,5 @@
+---
+
+- name: update cacerts
+  become: true
+  command: '{{ ansible_role_linux_cacert_update_command }}'

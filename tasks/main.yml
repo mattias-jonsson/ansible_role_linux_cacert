@@ -1,0 +1,8 @@
+---
+
+- name: include variables specific for the OS family.
+  include_vars: "{{ item }}"
+  with_items:
+    - "{{ ansible_os_family }}.yml"
+
+- import_tasks: install.yml

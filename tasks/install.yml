@@ -1,0 +1,70 @@
+---
+
+- name: ensure that destination certificate folder exists
+  become: true
+  ansible.builtin.file:
+    path: '{{ ansible_role_linux_cacert_dest_path }}'
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: add certificates
+  become: true
+  ansible.builtin.copy:
+    src: '{{ item | basename }}'
+    dest: '{{ ansible_role_linux_cacert_dest_path }}'
+    owner: root
+    group: root
+    mode: '0755'
+  with_items: '{{ ansible_role_linux_cacert_list }}'
+  notify: update cacerts
+
+- name: black list operations on supported OSes
+  block:
+
+    - name: ensure that destination blacklist folder exists
+      become: true
+      ansible.builtin.file:
+        path: '{{ ansible_role_linux_cacert_blacklist_dest_path }}'
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: add cert to blacklist on RedHat distributions
+      become: true
+      ansible.builtin.copy:
+        src: '{{ item | basename }}'
+        dest: '{{ ansible_role_linux_cacert_blacklist_dest_path }}'
+        owner: root
+        group: root
+        mode: '0755'
+      with_items: '{{ ansible_role_linux_cacert_blacklist }}'
+      notify: update cacerts
+
+  when: ansible_os_family == "RedHat"
+
+- name: cleanup block
+  block:
+
+    - name: build list of unwanted installed certificates
+      become: true
+      ansible.builtin.find:
+        path: 
+          - '{{ ansible_role_linux_cacert_dest_path }}'
+        file_type: file
+        pattern: '.*'
+        use_regex: yes
+        excludes: '{{ ansible_role_linux_cacert_list }}'
+      register: ansible_role_linux_cacert_unwanted_ca_certs_find
+
+    - name: remove unwanted files from {{ ansible_role_linux_cacert_dest_path }}
+      become: true
+      ansible.builtin.file:
+        path: "{{ item['path'] }}"
+        state: absent
+      loop: "{{ ansible_role_linux_cacert_unwanted_ca_certs_find['files'] }}"
+      notify: update cacerts
+
+  when: ansible_role_linux_cacert_cleanup | bool

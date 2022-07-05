@@ -1,0 +1,5 @@
+---
+
+ansible_role_linux_cacert_dest_path: /etc/pki/ca-trust/source/anchors
+ansible_role_linux_cacert_blacklist_dest_path: /etc/pki/ca-trust/source/blacklist
+ansible_role_linux_cacert_update_command: /usr/bin/update-ca-trust

@@ -1,0 +1,5 @@
+---
+
+ansible_role_linux_cacert_list: []
+ansible_role_linux_cacert_blacklist: [] 
+ansible_role_linux_cacert_cleanup: false
