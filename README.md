@@ -50,7 +50,7 @@ Example Playbook
         ansible_role_linux_cacert_cleanup: true
 
       roles:
-         - role: ansible_role_sudoers
+         - ansible_role_sudoers
 
 License
 -------
