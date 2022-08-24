@@ -1,7 +1,7 @@
 Ansible Role: ansible_role_linux_cacert
 =========
 
-An Ansible role that handles custom CA certificates (install/blacklist) on supported Linux distributions.
+Handles custom CA certificates (install/blacklist) on the following Linux distributions:
 
 <ul>
 <li>Red Hat/CentOS/Fedora/etc.
@@ -25,11 +25,11 @@ Optional, list of CA certificate files to install.
 
     ansible_role_linux_cacert_blacklist  
 
-Optional, list of blacklist CA certificate files to install.  
+Optional, list of blacklist CA certificate files to install (currently only works on Enterprise Linux-based distributions).  
 
     ansible_role_linux_cacert_cleanup  
 
-Optionally remove any certificate files not added by role.  
+Optionally remove any certificate files not added by role from the `ansible_role_linux_cacert_dest_path` see the variable file in `vars` folder of the role.  
 
 
 Dependencies
