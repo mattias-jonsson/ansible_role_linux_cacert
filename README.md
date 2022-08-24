@@ -35,7 +35,7 @@ Optionally remove any certificate files not added by role from the `ansible_role
 Dependencies
 ------------
 
-This role has no external dependencies.
+None.
 
 Example Playbook
 ----------------
