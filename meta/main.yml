@@ -6,19 +6,19 @@ galaxy_info:
   role_name: ansible_role_linux_cacert
   license: MIT
   platforms:
-  - name: EL
-    versions:
-    - "7"
-    - "8"
-  - name: Fedora
-    versions:
-    - "34"
-  - name: Debian
-    versions:
-    - buster
-    - bullseye
-  - name: Ubuntu
-    versions:
-    - bionic
-    - focal
-    - jammy
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+    - name: Fedora
+      versions:
+        - "34"
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - jammy

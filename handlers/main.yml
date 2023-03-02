@@ -1,5 +1,5 @@
 ---
 
-- name: update cacerts
+- name: Update cacerts
   become: true
-  command: '{{ ansible_role_linux_cacert_update_command }}'
+  ansible.builtin.command: '{{ ansible_role_linux_cacert_update_command }}'
